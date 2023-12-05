@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Verifica se o número correto de argumentos foi fornecido
+if [ "$#" -ne 1 ]; then
+    echo "Uso: $0 <numero_da_input ou 'all'>"
+    exit 1
+fi
+
+# Função para executar o processo para um número de input
+executa_para_input() {
+    input_number="$1"
+
+    # Constrói os nomes dos arquivos de entrada e saída
+    input_file="input${input_number}"
+    output_file="output${input_number}"
+
+    # Roda o arquivo compilado com o input fornecido e direciona a saída para um arquivo de saída
+    ./ORI_T02 < "../test-cases/in/${input_file}.txt" > "../test-cases/out/${output_file}.txt"
+}
+
+# Caminho para a pasta base-code
+base_code_path="base-code"
+
+# Entra na pasta base-code
+cd "$base_code_path" || exit 1
+
+# Deleta os arquivos ORI_T02, ORI_T02_HEADER.o, ORI_T02.o
+rm -f ORI_T02 ORI_T02_HEADER.o ORI_T02.o
+
+# Roda o make
+make
+
+# Verifica se a compilação foi bem-sucedida
+if [ "$?" -ne 0 ]; then
+    echo "Erro ao compilar. Verifique os arquivos de origem e o Makefile."
+    exit 1
+fi
+
+# Verifica se o argumento é "all"
+if [ "$1" = "all" ]; then
+    # Executa para todas as inputs de 1 a 10
+    for ((i = 1; i <= 10; i++)); do
+        executa_para_input "$i"
+    done
+else
+    # Executa para o número fornecido como argumento
+    executa_para_input "$1"
+fi
+
+# Retorna para o diretório anterior
+cd - || exit 1
+
+echo "Script concluído com sucesso."
