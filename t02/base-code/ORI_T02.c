@@ -66,7 +66,7 @@ int main() {
 
     scanf("SET ARQUIVO_CORRIDAS TO '%[^']';\n", ARQUIVO_CORRIDAS);
     temp_len = strlen(ARQUIVO_CORRIDAS);
-    qtd_registros_corridas = temp_len / (TAM_REGISTRO_CORRIDA - 5);
+    qtd_registros_corridas = temp_len / TAM_REGISTRO_CORRIDA;
     ARQUIVO_CORRIDAS[temp_len] = '\0';
  
     // inicialização do gerador de números aleatórios e função de datas
@@ -88,7 +88,7 @@ int main() {
         clear_input(input);
  
         if (strcmp("", input) == 0)
-            continue; // não avança o tempo nem imprime o comando caso esteja em branco
+            continue; // não avança o tempo nem imprime o comando este seja em branco
  
         /* Funções principais */
         if (sscanf(input, "INSERT INTO corredores VALUES ('%[^']', '%[^']', '%[^']'');", id_corredor, nome_corredor, apelido) == 3)

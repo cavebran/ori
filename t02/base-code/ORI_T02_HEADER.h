@@ -50,7 +50,7 @@ typedef enum {false, true} bool;
 #define TAM_REGISTRO_CORREDOR (TAM_ID_CORREDOR+TAM_MAX_NOME_CORREDOR+TAM_MAX_APELIDO+TAM_DATETIME+TAM_FLOAT_NUMBER+QTD_MAX_VEICULO*TAM_MAX_MODELO)
 #define TAM_REGISTRO_VEICULO (TAM_ID_VEICULO+TAM_MAX_MARCA+TAM_MAX_MODELO+TAM_MAX_PODER+TAM_INT_NUMBER*3+TAM_FLOAT_NUMBER+1)
 #define TAM_REGISTRO_PISTA (TAM_ID_PISTA+TAM_MAX_NOME_PISTA+TAM_INT_NUMBER*3+TAM_FLOAT_NUMBER+1)
-#define TAM_REGISTRO_CORRIDA (TAM_ID_PISTA+TAM_DATETIME+TAM_ID_CORREDORES+TAM_ID_VEICULOS+1)
+#define TAM_REGISTRO_CORRIDA (TAM_ID_PISTA+TAM_DATETIME+TAM_ID_CORREDORES+TAM_ID_VEICULOS+1 - 5)
 #define TAM_ARQUIVO_CORREDORES (TAM_REGISTRO_CORREDOR * MAX_REGISTROS + 1)
 #define TAM_ARQUIVO_VEICULOS (TAM_REGISTRO_VEICULO * MAX_REGISTROS + 1)
 #define TAM_ARQUIVO_PISTAS (TAM_REGISTRO_PISTA * MAX_REGISTROS + 1)
@@ -356,7 +356,7 @@ bool exibir_btree_nome_pista(char *chave);
 bool exibir_btree_preco_veiculo(char *chave);
  
 /* Recupera do arquivo o registro com o RRN informado
- * e retorna os dados nas structs */
+ * e retorna os dados nas structs Usuario, Curso e Inscricao */
 Corredor recuperar_registro_corredor(int rrn);
 Veiculo recuperar_registro_veiculo(int rrn);
 Pista recuperar_registro_pista(int rrn);
@@ -447,8 +447,6 @@ int busca_binaria(const void *key, const void *base0, size_t nmemb, size_t size,
 /* Funções extras */
 int qsort_string_modelo(const void *a, const void *b);
 int qsort_data_idx(const void *a, const void *b);
-bool remove_e_reorganiza_node(btree_node *node, int rrn, btree *t);
-void node_insert(promovido_aux promo, btree_node *node, int rrn, btree *t);
 
 /* ===========================================================================
  * ================================= FUNÇÕES ================================= */

@@ -787,8 +787,8 @@ bool btree_print_in_order(char *chave_inicio, char *chave_fim, bool (*exibir)(ch
  * @param t Árvore-B na qual será feita a leitura do nó.
  */
 btree_node btree_read(int rrn, btree *t) {
-  btree_node te;
-  /*IMPLEMENTE A FUNÇÃO AQUI*/
+    btree_node te;
+    /*IMPLEMENTE A FUNÇÃO AQUI*/
 	printf(ERRO_NAO_IMPLEMENTADO, "btree_read");
 	return te;
 }
@@ -802,7 +802,7 @@ btree_node btree_read(int rrn, btree *t) {
 void btree_write(btree_node no, btree *t) {
     /*IMPLEMENTE A FUNÇÃO AQUI*/
 	printf(ERRO_NAO_IMPLEMENTADO, "btree_write");
-	// return false;
+	return false;
 }
 
 /**
@@ -848,6 +848,7 @@ int btree_register_size(btree *t) {
  *                      0 = nulo : retorna NULL. [modo padrão]
  *                     +1 = sucessor : retorna o elemento SUCESSOR (o que apareceria imediatamente depois do elemento procurado, caso fosse encontrado).
  * @return Retorna o elemento encontrado ou NULL se não encontrou.
+ * @return Retorna o indice do elemento encontrado ou -1 se não encontrou. 
  */
 int busca_binaria_com_reps(const void *key, const void *base0, size_t nmemb, size_t size, int (*compar)(const void *, const void *), bool exibir_caminho, int posicao_caso_repetido, int retorno_se_nao_encontrado) {
     int ret=-1;
